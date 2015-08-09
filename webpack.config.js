@@ -2,6 +2,7 @@ var Webpack = require('webpack');
 var path = require('path');
 var appPath = path.resolve(__dirname, 'app');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var semanticUIPath = path.resolve(__dirname,'semantic');
 var buildPath = path.resolve(__dirname, 'public', 'build');
 
 var config = {
@@ -20,10 +21,16 @@ var config = {
     loaders: [{
       test: /\.js$/,
       loader: 'babel',
-      exclude: [nodeModulesPath]
+      exclude: [nodeModulesPath,semanticUIPath]
     }, {
       test: /\.css$/,
       loader: 'style!css'
+    },{
+      test: /\.jade$/,
+      loader: 'jade',
+    },{
+      test: /\.(png|woff|svg|woff2|ttf|eot)$/,
+      loader: 'url-loader?limit=100000'
     }]
   },
   plugins: [new Webpack.HotModuleReplacementPlugin()]
