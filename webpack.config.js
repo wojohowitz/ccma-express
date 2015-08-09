@@ -1,31 +1,32 @@
 var Webpack = require('webpack');
 var path = require('path');
-var appPath = path.resolve(__dirname,'app');
-var nodeModulesPath = path.resolve(__dirname,'node_modules');
-var buildPath = path.resolve(__dirname,'public','build');
+var appPath = path.resolve(__dirname, 'app');
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var buildPath = path.resolve(__dirname, 'public', 'build');
 
-module.exports = {
+var config = {
   context: __dirname,
   devtool: 'eval-source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
-    path.resolve(appPath,'main.js')
-  ],
+    'webpack-dev-server/client?http://localhost:3000', 
+    'webpack/hot/dev-server', 
+    path.resolve(appPath, 'main.js')],
   output: {
     path: buildPath,
-    publicPath: '/build/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/build/'
   },
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel',
-      exclued: [nodeModulesPath]
-    },{
+      exclude: [nodeModulesPath]
+    }, {
       test: /\.css$/,
       loader: 'style!css'
     }]
   },
   plugins: [new Webpack.HotModuleReplacementPlugin()]
 };
+
+module.exports = config;
