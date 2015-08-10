@@ -8,13 +8,16 @@ var buildPath = path.resolve(__dirname, 'public', 'build');
 var config = {
   context: __dirname,
   devtool: 'eval-source-map',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000', 
-    'webpack/hot/dev-server', 
-    path.resolve(appPath, 'main.js')],
+  entry: {
+    webpack: ['webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/dev-server'],
+    app: [path.resolve(appPath, 'main.js')],
+    vendor: [path.resolve(appPath,'vendor.js')]
+  },
   output: {
     path: buildPath,
-    filename: 'bundle.js',
+    filename: '[name].js',
+    chunkFilename: '[chunkhash].js',
     publicPath: '/build/'
   },
   module: {

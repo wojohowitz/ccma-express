@@ -1,7 +1,4 @@
 var agnular = require('angular');
-window.jQuery = require('jquery');
-require('../semantic/app/styles/semantic.css');
-require('../semantic/app/styles/semantic.js');
 require('angular-ui-router');
 
 
