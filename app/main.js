@@ -1,4 +1,4 @@
-var agnular = require('angular');
+var angular = require('angular');
 require('../semantic/app/styles/semantic.css');
 require('../semantic/app/styles/semantic.js');
 
